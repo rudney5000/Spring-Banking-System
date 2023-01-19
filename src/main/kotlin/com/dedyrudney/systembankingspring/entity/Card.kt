@@ -11,22 +11,20 @@ data class Card (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
-    var expirationdate: Date,
+    var expirationdate: String,
     var holdername: String,
     var number: String,
-    var password: String,
+    var cvv: String,
 
-    @Column(name = "account_id")
-    @JsonIgnore
-    var accountId: Long,
+//    @Column(name = "account_id")
+//    @JsonIgnore
+//    var accountId: Long,
 
     @OneToOne(
         mappedBy = "card",
         cascade = [CascadeType.ALL],
-        fetch = FetchType.EAGER
     )
-    @JsonManagedReference
-    var accountsCard: Account?=null,
+    var account: Account?=null,
 
     @OneToMany(
         mappedBy = "cards",

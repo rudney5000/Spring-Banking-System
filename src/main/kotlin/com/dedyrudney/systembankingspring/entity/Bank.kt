@@ -11,8 +11,8 @@ data class Bank (
     var code: String,
     var name: String,
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "banks")
-    var accounts: MutableList<Account> = mutableListOf(),
+//    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "bank")
+//    var accounts: MutableList<Account> = mutableListOf(),
 
     @OneToMany(
         cascade = [CascadeType.ALL],

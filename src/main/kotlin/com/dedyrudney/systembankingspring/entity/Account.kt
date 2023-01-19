@@ -15,24 +15,15 @@ data class Account (
     var overDraftLimit: Int,
     var Owner: String,
 
-    @ManyToOne
-    var banks: Bank?=null,
-
     @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
     @JoinColumn(name = "card_id")
-    @JsonManagedReference
-    val card: Card?=null,
+    var card: Card?=null,
 
-//    @Column(name = "customer_id")
-//    @JsonIgnore
-//    var customerId: Long,
+    @Column(name = "customer_id")
+    var customerId: Long,
 
-    @OneToOne(
-        mappedBy = "accounts",
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.EAGER
-    )
-    @JoinColumn(name = "customer_id")
-    @JsonManagedReference
-    var customers: Customer?=null
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(insertable = false, updatable = false)
+    @JsonIgnore
+    var customer: Customer?=null
     )

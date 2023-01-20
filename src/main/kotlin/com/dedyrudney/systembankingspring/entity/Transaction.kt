@@ -48,6 +48,9 @@ data class Transaction (
     @JsonIgnore
     var card: Card? = null,
 
+//    @OneToOne(mappedBy = "transaction")
+//    var session: Session,
+
     @CreationTimestamp
     var createdAt: Timestamp?=null,
     @UpdateTimestamp

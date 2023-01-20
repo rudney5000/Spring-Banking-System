@@ -12,6 +12,10 @@ data class WithDrawl (
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
     var amount: Int,
+
+//    @OneToOne(mappedBy = "withDrawl")
+//    var transaction: Transaction,
+
     @CreationTimestamp
     var createdAt: Timestamp?=null,
     @UpdateTimestamp

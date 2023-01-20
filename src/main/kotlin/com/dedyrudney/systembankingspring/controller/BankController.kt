@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class BankController @Autowired private constructor(private val bankService: BankService){
     @GetMapping("/banks")
-    fun getBankList(): List<Bank> = bankService.getBanks()
+    fun getBankList(): List<Bank> = bankService.getAllBank()
 
     @GetMapping("/banks/{id}")
-    fun getBank(@PathVariable id: Long): Bank = bankService.getOne(id)
+    fun getBank(@PathVariable id: Long): Bank = bankService.getBank(id)
 
     @PostMapping("/banks")
     fun createBank(@RequestBody bank: Bank): Bank = bankService.saveBank(bank)

@@ -12,6 +12,10 @@ data class Deposit (
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
     var amount: String,
+
+//    @OneToOne(mappedBy = "deposit")
+//    var transaction: Transaction,
+
     @CreationTimestamp
     var createdAt: Timestamp?=null,
     @UpdateTimestamp

@@ -1,6 +1,7 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.ATM
+import com.dedyrudney.systembankingspring.exception.ATMNotFoundException
 import com.dedyrudney.systembankingspring.repository.ATMRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,7 +14,7 @@ class ATMService @Autowired private constructor(private val atmRepository: ATMRe
     fun getATM(id: Long): ATM = atmRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("The ATM with this $id was not Found!")
+            ATMNotFoundException("The ATM with this $id was not Found!")
         }
 
     fun saveATM(atm: ATM): ATM = atmRepository.save(atm)

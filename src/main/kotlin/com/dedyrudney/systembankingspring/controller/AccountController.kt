@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController
 class AccountController @Autowired private constructor(private val accountService: AccountService){
 
     @GetMapping("/accounts")
-    fun getAccountList(): List<Account> = accountService.getAccounts()
+    fun getAccountList(): List<Account> = accountService.getAllAccount()
 
     @GetMapping("/accounts/{id}")
-    fun getAccount(@PathVariable id:Long): Account = accountService.getOne(id)
+    fun getAccount(@PathVariable id:Long): Account = accountService.getAccount(id)
 
     @PostMapping("/accounts")
     fun createAccount(@RequestBody account: Account): Account = accountService.saveAccount(account)

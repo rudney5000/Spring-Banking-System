@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CustomerController @Autowired private constructor(private val customerService: CustomerService){
     @GetMapping("/customers")
-    fun getCustomerList(): List<Customer> = customerService.getAllCustomers()
+    fun getCustomerList(): List<Customer> = customerService.getAllCustomer()
 
     @GetMapping("/customers/{id}")
     fun getCustomer(@PathVariable id: Long): Customer = customerService.getCustomer(id)

@@ -24,28 +24,8 @@ data class Card (
         cascade = [CascadeType.ALL],
         mappedBy = "card"
     )
-    var transaction: MutableList<Transaction> = mutableListOf()
+    var transaction: MutableList<Transaction> = mutableListOf(),
 
-//    @OneToOne(
-//        mappedBy = "card",
-//////        cascade = [CascadeType.ALL],
-//////        fetch = FetchType.EAGER
-//    )
-//////    @JsonManagedReference
-//    var account: Account,
-
-//    @OneToMany(
-//        mappedBy = "cards",
-//        cascade = [CascadeType.ALL]
-//    )
-//    var sessions: MutableList<Session> = mutableListOf(),
-
-//    @OneToOne(
-//        mappedBy = "",
-//        cascade = [CascadeType.ALL],
-//        fetch = FetchType.EAGER
-//    )
-//    @JoinColumn(name = "customer_id")
-//    @JsonManagedReference
-//    var customerCard: Customer?=null
+//    @OneToOne(mappedBy = "card")
+//    var account: Account
 )

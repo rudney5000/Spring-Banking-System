@@ -1,18 +1,19 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.Customer
+import com.dedyrudney.systembankingspring.exception.CustomerNotFoundException
 import com.dedyrudney.systembankingspring.repository.CustomerRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class CustomerService @Autowired private constructor(private val customerRepository: CustomerRepository){
-    fun getAllCustomers(): List<Customer> = customerRepository.findAll()
+    fun getAllCustomer(): List<Customer> = customerRepository.findAll()
 
     fun getCustomer(id: Long): Customer = customerRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("Customer with $id was not found")
+            CustomerNotFoundException("Customer with $id was not found")
         }
     fun saveCustomer(customer: Customer): Customer = customerRepository.save(customer)
 

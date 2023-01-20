@@ -1,6 +1,7 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.Session
+import com.dedyrudney.systembankingspring.exception.SessionNotFoundException
 import com.dedyrudney.systembankingspring.repository.SessionRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -13,7 +14,7 @@ class SessionService @Autowired private constructor(private var sessionRepositor
     fun getSession(id: Long): Session = sessionRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("Session with this $id was not found!")
+            SessionNotFoundException("Session with this $id was not found!")
         }
 
     fun saveSession(session: Session): Session = sessionRepository.save(session)

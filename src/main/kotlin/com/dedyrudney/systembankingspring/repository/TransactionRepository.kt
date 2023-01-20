@@ -7,5 +7,6 @@ import java.util.Optional
 
 @Repository
 interface TransactionRepository:JpaRepository<Transaction, Long> {
+
     fun findByNumber(number: String): Optional<Transaction>
 }

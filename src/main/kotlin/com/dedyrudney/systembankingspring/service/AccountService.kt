@@ -1,24 +1,25 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.Account
+import com.dedyrudney.systembankingspring.exception.AccountNotFoundException
 import com.dedyrudney.systembankingspring.repository.AccountRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
 class AccountService @Autowired private constructor(private val accountRepository: AccountRepository){
-    fun getAccounts(): List<Account> = accountRepository.findAll()
+    fun getAllAccount(): List<Account> = accountRepository.findAll()
 
-    fun getOne(id: Long): Account = accountRepository
+    fun getAccount(id: Long): Account = accountRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("Account with this $id was not Found!")
+            AccountNotFoundException("Account with this $id was not Found!")
         }
 
     fun saveAccount(account: Account): Account = accountRepository.save(account)
 
     fun updateAccount(id: Long, accountInput: Account): Account {
-        val accountFound = getOne(id)
+        val accountFound = getAccount(id)
 
         accountFound.initialBalance = accountInput.initialBalance
         accountFound.Owner = accountInput.Owner
@@ -32,7 +33,7 @@ class AccountService @Autowired private constructor(private val accountRepositor
     }
 
     fun deleteAccount(id: Long): String{
-        val accountFound = getOne(id)
+        val accountFound = getAccount(id)
 
         accountRepository.delete(accountFound)
         return "Account deleted!"

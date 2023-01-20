@@ -1,6 +1,7 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.Card
+import com.dedyrudney.systembankingspring.exception.CardNotFoundException
 import com.dedyrudney.systembankingspring.repository.CardRepository
 import org.springframework.beans.factory.annotation.Autowired import org.springframework.stereotype.Service
 
@@ -12,7 +13,7 @@ class CardService @Autowired private constructor(private val cardRepository: Car
     fun getCard(id: Long): Card = cardRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("Card with this $id was not Found!")
+            CardNotFoundException("Card with this $id was not Found!")
         }
 
     fun saveCard(card: Card): Card = cardRepository.save(card)
@@ -32,7 +33,7 @@ class CardService @Autowired private constructor(private val cardRepository: Car
 //                    customerCard = cardInput.customerCard
                 )
             )
-        }else throw  IllegalArgumentException("No matching card was found")
+        }else throw CardNotFoundException("No matching card was found")
     }
 
     fun deleteCard(id: Long): String{

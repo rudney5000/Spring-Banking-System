@@ -1,6 +1,7 @@
 package com.dedyrudney.systembankingspring.service
 
 import com.dedyrudney.systembankingspring.entity.Bank
+import com.dedyrudney.systembankingspring.exception.BankNotFoundException
 import com.dedyrudney.systembankingspring.repository.BankRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -8,18 +9,18 @@ import org.springframework.stereotype.Service
 @Service
 class BankService @Autowired private constructor(private var bankRepository: BankRepository){
 
-    fun getBanks(): List<Bank> = bankRepository.findAll()
+    fun getAllBank(): List<Bank> = bankRepository.findAll()
 
-    fun getOne(id: Long): Bank = bankRepository
+    fun getBank(id: Long): Bank = bankRepository
         .findById(id)
         .orElseThrow {
-            IllegalArgumentException("Bank with this $id was not found")
+            BankNotFoundException("Bank with this $id was not found")
         }
 
     fun saveBank(bank: Bank): Bank = bankRepository.save(bank)
 
     fun updateBank(id: Long, bankInput: Bank): Bank {
-        val bankFound = getOne(id)
+        val bankFound = getBank(id)
 
         bankFound.code = bankInput.code
         bankFound.name = bankInput.name
@@ -31,11 +32,9 @@ class BankService @Autowired private constructor(private var bankRepository: Ban
     }
 
     fun deleteBank(id: Long): String{
-        val bankFound = getOne(id)
+        val bankFound = getBank(id)
 
         bankRepository.delete(bankFound)
         return "Bank deleted"
     }
-
-
 }

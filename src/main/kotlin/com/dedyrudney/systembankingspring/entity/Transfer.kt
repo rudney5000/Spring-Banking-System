@@ -12,6 +12,10 @@ data class Transfer (
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long,
     var amount: Int,
+
+//    @OneToOne(mappedBy = "transfer")
+//    var transaction: Transaction,
+
     @CreationTimestamp
     var createdAt: Timestamp?=null,
     @UpdateTimestamp

@@ -26,7 +26,7 @@ class CustomerService @Autowired private constructor(private val customerReposit
         customerFound.address = customerInput.address
         customerFound.city = customerInput.city
         customerFound.country = customerInput.country
-        customerFound.account = customerInput.account
+//        customerFound.account = customerInput.account
         customerFound.dob = customerInput.dob
 //        customerFound.card = customerInput.card
         customerFound.bank = customerInput.bank

@@ -1,5 +1,6 @@
 package com.dedyrudney.systembankingspring.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -8,8 +9,10 @@ data class ATM (
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long,
-    var managedBy: String,
-    var localisation: String,
+//    var managedBy: String,
+//    var country: String,
+    var city: String,
+    var address: String,
 
     @Enumerated(EnumType.STRING)
     var money: Money? = null,
@@ -20,6 +23,11 @@ data class ATM (
     )
     var session: MutableList<Session> = mutableListOf(),
 
-    @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
+    @Column(name = "bank_id")
+    var bankId: Long,
+
+    @ManyToOne
+    @JoinColumn(insertable = false, updatable = false)
+    @JsonIgnore
     var bank: Bank? =null
 )

@@ -9,15 +9,20 @@ import javax.persistence.*
 data class Account (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "comp_id")
     var id: Long,
     var initialBalance: Float,
     var number: Int,
     var overDraftLimit: Int,
     var Owner: String,
 
-    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
-    @JoinColumn(name = "card_id")
-    var card: Card?=null,
+    @OneToOne(
+        cascade = [CascadeType.ALL],
+    )
+    @JoinColumn(
+        name = "carte_id",
+    )
+    var card: Card,
 
     @Column(name = "customer_id")
     var customerId: Long,
@@ -26,4 +31,4 @@ data class Account (
     @JoinColumn(insertable = false, updatable = false)
     @JsonIgnore
     var customer: Customer?=null
-    )
+)

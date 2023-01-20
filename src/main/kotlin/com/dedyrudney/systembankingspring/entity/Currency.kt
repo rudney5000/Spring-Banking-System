@@ -13,9 +13,9 @@ data class Currency (
     @Enumerated(EnumType.STRING)
     var money: Money?=null,
 
-    @OneToMany(
-        mappedBy = "currency",
-        cascade = [CascadeType.ALL]
-    )
-    var transaction: MutableList<Transaction> = mutableListOf()
+//    @OneToMany(
+//        mappedBy = "currency",
+//        cascade = [CascadeType.ALL]
+//    )
+//    var transaction: MutableList<Transaction> = mutableListOf()
 )

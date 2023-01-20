@@ -9,7 +9,6 @@ import javax.persistence.*
 data class Customer (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "customer_id")
     var id: Long,
     var username: String,
     var fullname: String,
@@ -26,7 +25,6 @@ data class Customer (
     @OneToMany(
         mappedBy = "customer",
         cascade = [CascadeType.ALL],
-//        fetch = FetchType.EAGER
     )
     var account: MutableList<Account> = mutableListOf(),
 

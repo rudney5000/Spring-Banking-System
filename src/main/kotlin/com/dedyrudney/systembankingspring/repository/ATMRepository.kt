@@ -8,5 +8,5 @@ import java.util.Optional
 @Repository
 interface ATMRepository: JpaRepository<ATM, Long> {
 
-    fun findByManagedBy(managedBy: String): Optional<ATM>
+    fun findByAddress(address: String): Optional<ATM>
 }

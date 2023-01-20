@@ -18,7 +18,7 @@ data class Bank (
         cascade = [CascadeType.ALL],
         mappedBy = "bank"
     )
-    var atms: MutableList<ATM> = mutableListOf(),
+    var atm: MutableList<ATM> = mutableListOf(),
 
     @OneToMany(
         cascade = [CascadeType.ALL],

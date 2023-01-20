@@ -1,8 +1,6 @@
 package com.dedyrudney.systembankingspring.entity
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonManagedReference
-import java.util.Date
 import javax.persistence.*
 
 @Entity
@@ -10,34 +8,44 @@ import javax.persistence.*
 data class Card (
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(
+//        name = "ca_id",
+//    )
     var id: Long,
     var expirationdate: String,
     var holdername: String,
     var number: String,
     var cvv: String,
 
-//    @Column(name = "account_id")
-//    @JsonIgnore
-//    var accountId: Long,
-
-    @OneToOne(
-        mappedBy = "card",
-        cascade = [CascadeType.ALL],
-    )
-    var account: Account?=null,
+    @Enumerated(EnumType.STRING)
+    var money: Money?=null,
 
     @OneToMany(
-        mappedBy = "cards",
-        cascade = [CascadeType.ALL]
-    )
-    var sessions: MutableList<Session> = mutableListOf(),
-
-    @OneToOne(
-        mappedBy = "",
         cascade = [CascadeType.ALL],
-        fetch = FetchType.EAGER
+        mappedBy = "card"
     )
-    @JoinColumn(name = "customer_id")
-    @JsonManagedReference
-    var customerCard: Customer?=null
+    var transaction: MutableList<Transaction> = mutableListOf()
+
+//    @OneToOne(
+//        mappedBy = "card",
+//////        cascade = [CascadeType.ALL],
+//////        fetch = FetchType.EAGER
+//    )
+//////    @JsonManagedReference
+//    var account: Account,
+
+//    @OneToMany(
+//        mappedBy = "cards",
+//        cascade = [CascadeType.ALL]
+//    )
+//    var sessions: MutableList<Session> = mutableListOf(),
+
+//    @OneToOne(
+//        mappedBy = "",
+//        cascade = [CascadeType.ALL],
+//        fetch = FetchType.EAGER
+//    )
+//    @JoinColumn(name = "customer_id")
+//    @JsonManagedReference
+//    var customerCard: Customer?=null
 )

@@ -26,9 +26,10 @@ class CardService @Autowired private constructor(private val cardRepository: Car
                     holdername = cardInput.holdername,
                     number = cardInput.number,
                     cvv = cardInput.cvv,
-                    account = cardInput.account,
-                    sessions = cardInput.sessions,
-                    customerCard = cardInput.customerCard
+                    money = cardInput.money
+//                    account = cardInput.account,
+//                    sessions = cardInput.sessions
+//                    customerCard = cardInput.customerCard
                 )
             )
         }else throw  IllegalArgumentException("No matching card was found")

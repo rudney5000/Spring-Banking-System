@@ -23,7 +23,7 @@ class BankService @Autowired private constructor(private var bankRepository: Ban
 
         bankFound.code = bankInput.code
         bankFound.name = bankInput.name
-        bankFound.atms = bankInput.atms
+        bankFound.atm = bankInput.atm
 //        bankFound.accounts = bankInput.accounts
         bankFound.customer = bankInput.customer
 

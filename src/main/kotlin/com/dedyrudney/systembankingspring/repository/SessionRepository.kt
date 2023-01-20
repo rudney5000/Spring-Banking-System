@@ -7,5 +7,5 @@ import java.util.Optional
 
 @Repository
 interface SessionRepository:JpaRepository<Session, Long> {
-    fun findByNumber(number: String): Optional<Session>
+    fun findByLastMessage(lastMessage: String): Optional<Session>
 }

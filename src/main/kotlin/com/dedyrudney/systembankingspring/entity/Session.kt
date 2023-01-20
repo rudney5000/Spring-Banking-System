@@ -1,5 +1,9 @@
 package com.dedyrudney.systembankingspring.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
+import java.sql.Timestamp
 import javax.persistence.*
 
 @Entity
@@ -11,9 +15,20 @@ class Session (
     var lastMessage: String,
     var number: String,
 
-    @ManyToOne
-    var cards: Card?=null,
+    @OneToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "transaction_id")
+    var transaction: Transaction,
+
+    @Column(name = "atm_id")
+    var atmId: Long,
 
     @ManyToOne
-    var atm: ATM? = null
-        )
+    @JoinColumn(insertable = false, updatable = false)
+    @JsonIgnore
+    var atm: ATM? = null,
+
+    @CreationTimestamp
+    var createdAt: Timestamp?=null,
+    @UpdateTimestamp
+    var updatedAt: Timestamp? = null,
+)
